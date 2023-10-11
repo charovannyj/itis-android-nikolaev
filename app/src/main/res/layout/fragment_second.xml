@@ -7,7 +7,7 @@
     tools:context=".SecondFragment">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="2nd screen"
@@ -19,10 +19,10 @@
         app:layout_constraintVertical_bias="0.093" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/appCompatButton2"
+        android:id="@+id/buttonTo3"
         android:layout_width="110dp"
         android:layout_height="60dp"
-        android:text="u r on 2 screen 1"
+        android:text="go to 3rd screen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.192"
@@ -31,10 +31,10 @@
         app:layout_constraintVertical_bias="0.329"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/appCompatButton3"
+        android:id="@+id/buttonTo1"
         android:layout_width="110dp"
         android:layout_height="60dp"
-        android:text="u r on 2 screen 2"
+        android:text="go to 1st screen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.777"

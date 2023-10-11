@@ -7,7 +7,7 @@
     tools:context=".FirstFragment">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/project_name"
@@ -30,7 +30,7 @@
         tools:layout_editor_absoluteX="-16dp" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/appCompatButton1"
+        android:id="@+id/button"
         android:layout_width="110dp"
         android:layout_height="60dp"
         android:text="go to 3rd screen"
