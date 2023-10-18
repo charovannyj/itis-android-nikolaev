@@ -24,14 +24,16 @@ class SecondFragment : Fragment(R.layout.fragment_second) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(_binding!!) {
-            textView.text = arguments?.getString(ParamsKey.MESSAGE_TEXT_KEY)?.takeIf { it.isNotEmpty() } ?: getString(R.string.screen2)
+            val str3 = arguments?.getString(ParamsKey.MESSAGE_TEXT_KEY)?.takeIf { it.isNotEmpty() } ?: getString(R.string.screen3);
+            val str2 = arguments?.getString(ParamsKey.MESSAGE_TEXT_KEY)?.takeIf { it.isNotEmpty() } ?: getString(R.string.screen2);
+            textView.text = str2
             buttonTo3.setOnClickListener {
                 requireActivity()
                     .supportFragmentManager
                     .beginTransaction()
-                    .add(
+                    .replace(
                         R.id.fragment_container,
-                        ThirdFragment.getInstance(textView.text.toString()),
+                        ThirdFragment.getInstance(str3),
                         ThirdFragment.THIRD_FRAGMENT_TAG
                     )
                     .addToBackStack(null)
@@ -41,9 +43,9 @@ class SecondFragment : Fragment(R.layout.fragment_second) {
                 requireActivity()
                     .supportFragmentManager
                     .beginTransaction()
-                    .add(
+                    .replace(
                         R.id.fragment_container,
-                        FirstFragment.getInstance(textView.text.toString()),
+                        FirstFragment.getInstance(),
                         FirstFragment.FIRST_FRAGMENT_TAG
                     )
                     .addToBackStack(null)

@@ -28,13 +28,13 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
                 requireActivity()
                     .supportFragmentManager
                     .beginTransaction()
-                    .add(R.id.fragment_container, SecondFragment.getInstance(texti), SecondFragment.SECOND_FRAGMENT_TAG)
+                    .replace(R.id.fragment_container, SecondFragment.getInstance(texti), SecondFragment.SECOND_FRAGMENT_TAG)
                     .addToBackStack(null)
                     .commit()
                 requireActivity()
                     .supportFragmentManager
                     .beginTransaction()
-                    .add(R.id.fragment_container, ThirdFragment.getInstance(texti), ThirdFragment.THIRD_FRAGMENT_TAG)
+                    .replace(R.id.fragment_container, ThirdFragment.getInstance(texti), ThirdFragment.THIRD_FRAGMENT_TAG)
                     .addToBackStack(null)
                     .commit()
             }
