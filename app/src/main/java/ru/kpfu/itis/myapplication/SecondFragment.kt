@@ -11,6 +11,7 @@ import ru.kpfu.itis.myapplication.databinding.FragmentSecondBinding
 
 class SecondFragment : Fragment(R.layout.fragment_second) {
     private var _binding: FragmentSecondBinding? = null
+    private var texti: String? = null;
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -23,7 +24,7 @@ class SecondFragment : Fragment(R.layout.fragment_second) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(_binding!!) {
-            textView.text = (arguments?.getString(ParamsKey.MESSAGE_TEXT_KEY) ?: R.string.screen2).toString();
+            textView.text = arguments?.getString(ParamsKey.MESSAGE_TEXT_KEY)?.takeIf { it.isNotEmpty() } ?: getString(R.string.screen2)
             buttonTo3.setOnClickListener {
                 requireActivity()
                     .supportFragmentManager
@@ -57,5 +58,15 @@ class SecondFragment : Fragment(R.layout.fragment_second) {
         fun getInstance(text: String?): SecondFragment = SecondFragment().apply {
             arguments = bundleOf(ParamsKey.MESSAGE_TEXT_KEY to text)
         }
+    }
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        val currentTexti = texti
+        outState.putString("savedStr", currentTexti)    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        val currentString = savedInstanceState?.getString("savedStr") ?: texti
+        texti = currentString
     }
 }
