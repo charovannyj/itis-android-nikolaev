@@ -20,6 +20,13 @@ class ThirdFragment : Fragment() {
         }
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        with(_binding!!) {
+            textView.text =
+                (arguments?.getString(ParamsKey.MESSAGE_TEXT_KEY) ?: R.string.screen3).toString();
+        }
+    }
     companion object {
         const val THIRD_FRAGMENT_TAG = "SECOND_FRAGMENT_TAG"
         fun getInstance() = ThirdFragment()
