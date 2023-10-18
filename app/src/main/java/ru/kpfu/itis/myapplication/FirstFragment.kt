@@ -6,27 +6,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.fragment.app.FragmentTransaction
 import ru.kpfu.itis.myapplication.databinding.FragmentFirstBinding
 
-class FirstFragment : Fragment() {
+class FirstFragment : Fragment(R.layout.fragment_first) {
     private var _binding: FragmentFirstBinding? = null
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first, container, false).also {
-            FragmentFirstBinding.bind(it)
-        }
+    ): View {
+        _binding = FragmentFirstBinding.inflate(inflater, container, false)
+        return _binding!!.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        _binding?.button?.setOnClickListener {
-            val text = _binding?.editText?.text.toString()
-            _binding!!.button.setOnClickListener{
+        with(_binding!!){
+            val text = editText.text.toString()
+            button.setOnClickListener{
                 requireActivity()
                     .supportFragmentManager
                     .beginTransaction()
@@ -41,6 +38,10 @@ class FirstFragment : Fragment() {
                     .commit()
             }
         }
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
     companion object {
         const val FIRST_FRAGMENT_TAG = "FIRST_FRAGMENT_TAG"

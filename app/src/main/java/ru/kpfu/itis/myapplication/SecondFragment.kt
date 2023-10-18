@@ -9,47 +9,45 @@ import androidx.core.os.bundleOf
 import ru.kpfu.itis.myapplication.databinding.FragmentFirstBinding
 import ru.kpfu.itis.myapplication.databinding.FragmentSecondBinding
 
-class SecondFragment : Fragment() {
+class SecondFragment : Fragment(R.layout.fragment_second) {
     private var _binding: FragmentSecondBinding? = null
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_second, container, false).also {
-            FragmentSecondBinding.bind(it)
-        }
+    ): View {
+        _binding = FragmentSecondBinding.inflate(inflater, container, false)
+        return _binding!!.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        _binding?.buttonTo3?.setOnClickListener {
-            requireActivity()
-                .supportFragmentManager
-                .beginTransaction()
-                .add(
-                    R.id.fragment_container,
-                    ThirdFragment.getInstance(_binding!!.textView.text.toString()),
-                    ThirdFragment.THIRD_FRAGMENT_TAG
-                )
-                .addToBackStack(null)
-                .commit()
-        }
-        _binding?.buttonTo1?.setOnClickListener {
-            requireActivity()
-                .supportFragmentManager
-                .beginTransaction()
-                .add(
-                    R.id.fragment_container,
-                    FirstFragment.getInstance(_binding!!.textView.text.toString()),
-                    FirstFragment.FIRST_FRAGMENT_TAG
-                )
-                .addToBackStack(null)
-                .commit()
+        with(_binding!!) {
+            textView.text = (arguments?.getString(ParamsKey.MESSAGE_TEXT_KEY) ?: R.string.screen2).toString();
+            buttonTo3.setOnClickListener {
+                requireActivity()
+                    .supportFragmentManager
+                    .beginTransaction()
+                    .add(
+                        R.id.fragment_container,
+                        ThirdFragment.getInstance(textView.text.toString()),
+                        ThirdFragment.THIRD_FRAGMENT_TAG
+                    )
+                    .addToBackStack(null)
+                    .commit()
+            }
+            buttonTo1.setOnClickListener {
+                requireActivity()
+                    .supportFragmentManager
+                    .beginTransaction()
+                    .add(
+                        R.id.fragment_container,
+                        FirstFragment.getInstance(textView.text.toString()),
+                        FirstFragment.FIRST_FRAGMENT_TAG
+                    )
+                    .addToBackStack(null)
+                    .commit()
+            }
         }
     }
 
