@@ -8,4 +8,6 @@
     <string name="project_name">My Application</string>
     <string name="screen2">2nd screen</string>
     <string name="screen3">3rd screen</string>
+    <string name="write_your_phone_number">Write your phone number</string>
+    <string name="write_a_count_questions">Write a count questions</string>
 </resources>
